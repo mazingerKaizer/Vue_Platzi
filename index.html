@@ -13,21 +13,37 @@
        const vm = Vue.createApp({
             data(){
                 return {
-                  text: "Hola Vue"
+                  firstName: "Daniel",
+                  lastName: "Lasauskas",
+                  now: new Date()
+                }
+            },
+            computed: {
+                fullName(){
+                    return `${this.firstName} ${this.lastName}`
+                },
+                today(){
+                    return this.now.toLocaleDateString()
                 }
             },
             template: `
-            <p>{{ text }}</p>
-            <input 
-                type="text" 
-                v-model="text" />
-            `,
-            methods: {
-               
-            },
+            <div>{{ fullName }}</div>
+            <p>{{today}}</p>`,
+            // methods: {
+            //     updateDate(){
+            //         setInterval(() =>{
+            //             this.now = new Date();                                                                    
+            //         },1000)
+            //     }
+            // },
+            // mounted() {
+            //     this.updateDate()
+            // },
+
+           /*
+           Una diferencia entre una computada y un método es que la computada no necesita ser llamada para que escuche los cambios. El método como dice la profe, puede retornar el valor deseado, pero siempre hay que hacer un llamado al mismo cuando queramos tenerlos en la vista.
+           */
             
-            // Atributos : == v-bind
-            // Eventos @ == click or keyup
             
            
        }).mount("#app");
