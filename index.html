@@ -7,42 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-        <!-- <div style="text-align: center;">
-        <p>{{counter}}</p>
-        <button @click="increment">+</button>
-        <button @click="decrement" :disabled="btnDisable">-</button> -->
-        </div>
-    </div>
+    <div id="app"></div>
     
     <script>
        const vm = Vue.createApp({
             data(){
                 return {
-                  counter: 0,
-                  btnDisable: false
+                  text: "Hola Vue"
                 }
             },
-            template: `<form v-on:submit.prevent="submit"><button>{{counter}}</button></form>`,
+            template: `
+            <p>{{ text }}</p>
+            <input 
+                type="text" 
+                v-model="text" />
+            `,
             methods: {
-                increment(){
-                    this.counter++   
-                    this.btnDisable = false                 
-                },
-                decrement(){                    
-                    if (this.counter <= 0){
-                        this.btnDisable = true
-                    } 
-                    else {
-                        this.counter-- 
-                    }                     
-                },
-                submit(e){    
-                    e.preventDefault();                                   
-                    this.counter++;  
-                }
                
             },
+            
+            // Atributos : == v-bind
+            // Eventos @ == click or keyup
             
            
        }).mount("#app");
