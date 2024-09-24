@@ -7,18 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">{{ text }}</div>
-
+    <div id="app" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+        <img v-bind="img">
+    </div>
+    
     <script>
        const vm = Vue.createApp({
             data(){
                 return {
-                    text: "Hola Vue!!!"
+                   img:{
+                    src:"https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg",
+                    alt: "Vue logo",
+                    width: 300
+                   }
                 }
             }
+            
+           
        }).mount("#app");
 
-       console.log(vm);
+       console.log(vm); // Aplication
        
     </script>
     
