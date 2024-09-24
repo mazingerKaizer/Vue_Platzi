@@ -8,25 +8,46 @@
 </head>
 <body>
     <div id="app" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-        <img v-bind="img">
+        <!-- <div style="text-align: center;">
+        <p>{{counter}}</p>
+        <button @click="increment">+</button>
+        <button @click="decrement" :disabled="btnDisable">-</button> -->
+        </div>
     </div>
     
     <script>
        const vm = Vue.createApp({
             data(){
                 return {
-                   img:{
-                    src:"https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg",
-                    alt: "Vue logo",
-                    width: 300
-                   }
+                  counter: 0,
+                  btnDisable: false
                 }
-            }
+            },
+            template: `<form v-on:submit.prevent="submit"><button>{{counter}}</button></form>`,
+            methods: {
+                increment(){
+                    this.counter++   
+                    this.btnDisable = false                 
+                },
+                decrement(){                    
+                    if (this.counter <= 0){
+                        this.btnDisable = true
+                    } 
+                    else {
+                        this.counter-- 
+                    }                     
+                },
+                submit(e){    
+                    e.preventDefault();                                   
+                    this.counter++;  
+                }
+               
+            },
             
            
        }).mount("#app");
 
-       console.log(vm); // Aplication
+    //    console.log(vm); // Aplication
        
     </script>
     
