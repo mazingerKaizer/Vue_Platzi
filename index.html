@@ -15,31 +15,78 @@
                 return {
                   text: "Puerta Cerrada",
                   open: false,
-                  door: 'img/cerrada.jpg'                  
+                  door: 'img/cerrada.jpg',
+                  styles: {
+                    backgroundColor: "#eca1a6"
+                  }               
                 }
             },           
-            template: `<div><img :src="door" :alt="text" /> 
-                        <p>{{ text }}</p>
-                        <button @click ="open = !open">{{open ? "Cerrar" : "Abrir"}}</button>
+            template: `<div class="container" :class="styled"><img :src="door" :alt="text" /> 
+                        <h2>{{ text }}</h2>
+                        <button @click ="open = !open">{{ label }}</button>
                         </div>`,
             watch: {
                 open(value, old){
                     if (value){
-                        this.text = "Puerta abierta"
+                        this.text = "Puerta Abierta"
                         this.door = 'img/abierta.jpg'
+                        this.styles.backgroundColor = "#b5e7a0"                        
                     } else {
-                        this.text = "Puerta cerrada"
+                        this.text = "Puerta Cerrada"
                         this.door = 'img/cerrada.jpg'
+                        this.styles.backgroundColor = "#eca1a6"
                     }                  
+                }
+            },
+            computed: {
+                label(){
+                    return this.open ? "Cerrar" : "Abrir"
+                },
+                styled(){
+                    return this.open ? "open" : "close"
                 }
             }
             
            
        }).mount("#app");
 
-    //    console.log(vm); // Aplication
-       
+             
     </script>
+
+    <style>
+        html,body {
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #app, .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        button {
+            margin-top: 24px;
+            border: none;
+            background-color: white;
+            padding: 8px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .close {
+            background-color: #eca1a6;
+        }
+
+        .open {
+            background-color: #b5e7a0;
+        }
+
+    </style>
     
 </body>
 </html>
